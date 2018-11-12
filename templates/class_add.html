@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加班级</title>
+
+</head>
+<body>
+<h1>添加班级</h1>
+<form action='{% url 'student:class_add' %}' method="post" id="f1" >
+    <p>班级号添加：{{ class_form.id}}{{ class_form.id.errors.0 }} </p>
+  <p>班级名称添加：{{ class_form.title}}{{ class_form.title.errors.0 }} </p>
+   <p> <span  id='result'></span></p>
+   <p><input type="button" id="submit" value="提交"></p>
+</form>
+
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+      $("#submit").click(function(){
+          var id = $("#id_id").val();
+        var title = $("#id_title").val();
+
+         $.post("{% url 'student:class_add' %}",
+             {'id':id,'title':title},
+             function(status){ if (status==1){
+
+                    alert('success');
+                    window.location.href='{% url 'student:class_list' %}'
+             }
+             else {
+                 {
+                    $('#result').html(status);
+                }
+             }
+        })
+      });
+    });
+</script>
+
+</html>

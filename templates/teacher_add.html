@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加老师</title>
+</head>
+<body>
+<ul>
+<form action="{% url 'student:teacher_add' %}" method="post" novalidate>
+{% csrf_token %}
+<p>老师姓名：{{ teacher_form.tname }}{{obj.tname.errors.0}}</p>
+<p>任教班级：{{ teacher_form.class_id }}{{obj.classes.errors.0}}</p>
+<p><input type="submit" value="提交"></p>
+ </form>
+</ul>
+</body>
+</html>

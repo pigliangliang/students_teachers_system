@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑班级</title>
+</head>
+<body>
+<form  method="post">
+   <p id="title">编辑班级名称：{{class_form.title }}{{class_form.title.errors.0}} </p>
+    <input onclick="edit({{ id }})" type="button"   value="提交">
+</form>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    function edit(id){
+        var title = $("#id_title").val();
+    $.ajax({
+
+        url: '{% url 'student:class_edit_confirm' %}',
+        type: 'POST',
+        data: {'id':id,'title':title},
+        dataType: 'json',
+        success: function(msg){
+        <!-- 这里一般拿到页面的某个区域的id，然后在这个区域里渲染我们想要渲染的东西。 -->
+            if (msg==1){
+
+                    alert('success');
+                    window.location.href='{% url 'student:class_list' %}'
+             }
+
+        }
+
+    })
+}
+</script>
+
+</html>

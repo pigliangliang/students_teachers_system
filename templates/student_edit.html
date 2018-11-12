@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑</title>
+</head>
+<body>
+<form action="{#% url 'student:student_edit' id %#} " method="post">
+<p>学生姓名：{{student_form.sname }}</p>
+<p>学生性别:{{ student_form.sex }}</p>
+    <p>学生班级:{{ student_form.class_id }}</p>
+<input type="submit" value="提交">
+</form>
+</body>
+</html>

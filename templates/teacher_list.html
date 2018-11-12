@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>老师列表</title>
+</head>
+<body>
+<ul>
+<br>
+<table border="1">
+<thead>
+<tr><td>老师</td><td colspan="3">班级</td><td>操作</td></tr>
+</thead>
+<tbody>
+
+<tr>
+    {% for teach in teacher %}
+
+
+        <td>{{teach.tname}}</td>
+
+        <td><a href="">编辑</a></td>
+        <td>
+            {% for k,v in d.items%}
+        <td>
+        {{ v}}
+        </td>
+    {% endfor %}
+        </td>
+    </tr>
+
+    {% endfor %}
+
+
+
+</tbody>
+</table>
+
+<td><a href="{% url 'student:teacher_add' %}">添加教师</a></td>
+</ul>
+</body>
+</html>

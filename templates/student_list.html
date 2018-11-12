@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生管理</title>
+</head>
+<body>
+<h1>学生管理</h1>
+<ul>
+    {% for row in students %}
+        <li>{{row.sname}}
+            {{row.sex}}
+            {{ row.class_id }}
+            <a href="{% url 'student:student_edit' row.class_id.id %}">编辑</a>
+            <a href="{% url 'student:student_delete' row.sname %}">删除</a>
+        </li>
+        <br>
+    {% endfor %}
+<a href="{% url 'student:student_add' %}">添加</a>
+
+</ul>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>班级列表</title>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.5-dist/css/bootstrap.css">
+</head>
+<body>
+<div style="width: 500px;margin: 0 auto">
+<h1>班级列表</h1>
+
+<ul >
+
+    {% for obj in clist %}
+
+       <h3>{{ obj.id }}班--{{ obj.title }}</h3>
+
+        <p><input  type="button" id="submit"  onclick="del({{ obj.id }})" value="删除">
+            <a  href="{% url 'student:class_edit' obj.id %}">编辑</a>
+
+        </p>
+        <!--a onclick="del({{ obj.id }})" href="{% url 'student:class_detele' obj.id %}">删除</a-->
+
+
+    {% endfor %}
+
+    <li>
+    <a href="{% url 'student:class_add' %}">你可以再此添加班级</a>
+    </li>
+</ul>
+</div>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    function del(id){
+    $.ajax({
+        url: '{% url 'student:class_delete_confirm' %}',
+        type: 'POST',
+        data: {'id':id},
+        dataType: 'json',
+        success: function(msg){
+        <!-- 这里一般拿到页面的某个区域的id，然后在这个区域里渲染我们想要渲染的东西。 -->
+            if (msg==1){
+
+                    alert('success');
+                    window.location.href='{% url 'student:class_list' %}'
+             }
+             else {
+                    $('#result').html(msg);
+                }
+        }
+
+    })
+}
+</script>
+
+
+
+</html>

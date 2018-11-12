@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <h1>添加学生</h1>
+    <meta charset="UTF-8">
+    <title>添加学生</title>
+</head>
+<body>
+<ul>
+<form action="{% url 'student:student_add' %}" method="post" novalidate>
+<p>姓名：{{ student_add.sname}}{{student_add.sname.errors.0}}</p>
+<p>性别：{{ student_add.sex}}{{student_add.sex.errors.0}} </p>
+<p>班级：{{ student_add.class_id }}{{ student_add.errors.0}}  </p>
+<p><input type="submit" value="提交"></p>
+ </form>
+</ul>
+</body>
+</html>
