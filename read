@@ -1,0 +1,41 @@
+djang2.0 
+python 3.6 
+django form  modelform  ajax 实现学生老师班级的管理系统
+model：
+student表
+  name
+  sex
+  class_id ：多对一 class表
+
+class表
+  title： 一对多  student表 
+  
+teacher表
+  name
+  class_id  多对多 class表
+
+model 数据修改 
+      多对多 
+            tname = teacher_form.cleaned_data.get('tname')
+            class_id  = teacher_form.cleaned_data.get('class_id')
+            print(tname,class_id)
+            #多对多更新数据，先修改manytomany表，在实例化被manytomany的表，最后再次更新manytomany表
+            teacher = Teachers(tname=tname)
+            teacher.save()
+            for id in class_id:
+                class_teacher = Classes.objects.get(id__exact=id)
+                teacher.class_id.add(class_teacher)
+            teacher.save()    
+
+      一对多
+            class_id = student_form.cleaned_data.get('class_id')
+            student_class = Classes.objects.get(id__exact=class_id)
+            #向一对多表中更新数据数据
+            s = Students(sname=student_form.cleaned_data.get('sname'),sex=student_form.cleaned_data.get('sex'),class_id=student_class)
+            s.save()
+   
+      更新数据总结：
+        
+        关联外键的表中的字段是一个query，而不是一个字段。
+   
+        
